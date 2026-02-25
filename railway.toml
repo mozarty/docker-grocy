@@ -3,18 +3,12 @@ builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = ""
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
+healthcheckPath = "/"
+healthcheckTimeout = 100
 
-[deploy.healthcheckPath]
-path = "/"
-
-[deploy.healthcheckTimeout]
-timeout = 100
-
-# Environment variables
-[deploy.env]
+[variables]
 PUID = "1000"
 PGID = "1000"
 TZ = "UTC"
