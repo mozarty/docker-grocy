@@ -32,3 +32,5 @@ fi
 # permissions
 lsiown -R abc:abc \
     /config
+
+echo "[grocy-init] Grocy initialization complete - application should be ready"
