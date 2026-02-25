@@ -1,0 +1,27 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = ""
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10
+
+[[deploy.healthcheck]]
+path = "/"
+timeout = 100
+interval = 20
+
+[deploy.healthcheck.http]
+port = 80
+
+# Railway will expose port 80 from the container
+[[deploy.ports]]
+port = 80
+protocol = "http"
+
+# Environment variables
+[deploy.env]
+PUID = "1000"
+PGID = "1000"
+TZ = "UTC"
