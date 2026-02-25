@@ -1,8 +1,8 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
-# Fix Railway IPv6 resolver format for nginx
-if [[ -f /config/nginx/resolver.conf ]]; then
+# Fix Railway IPv6 resolver format for nginx (only if not already wrapped)
+if [[ -f /config/nginx/resolver.conf ]] && grep -q 'fd12::10' /config/nginx/resolver.conf && ! grep -q '\[fd12::10\]' /config/nginx/resolver.conf; then
     sed -i 's/fd12::10/[fd12::10]/g' /config/nginx/resolver.conf
 fi
 
